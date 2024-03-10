@@ -1,0 +1,121 @@
+[
+    {
+        "id": "9247c127ea8b8168",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "67fde607cc4afc38",
+        "type": "rpi-srf",
+        "z": "9247c127ea8b8168",
+        "name": "",
+        "topic": "SRF",
+        "pulse": "1",
+        "pins": "16,18",
+        "precision": "0",
+        "x": 350,
+        "y": 300,
+        "wires": [
+            [
+                "8c381716190ff1ea"
+            ]
+        ]
+    },
+    {
+        "id": "972c8510f85029dd",
+        "type": "switch",
+        "z": "9247c127ea8b8168",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lte",
+                "v": "50",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 750,
+        "y": 300,
+        "wires": [
+            [
+                "addd05aeb4088dc8"
+            ]
+        ]
+    },
+    {
+        "id": "8c381716190ff1ea",
+        "type": "function",
+        "z": "9247c127ea8b8168",
+        "name": "function 1",
+        "func": "msg.payload = Number(msg.payload)\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 300,
+        "wires": [
+            [
+                "972c8510f85029dd"
+            ]
+        ]
+    },
+    {
+        "id": "addd05aeb4088dc8",
+        "type": "mqtt out",
+        "z": "9247c127ea8b8168",
+        "name": "",
+        "topic": "sensor/alarm",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "d66649d1ac837c3e",
+        "x": 970,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "d66649d1ac837c3e",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mqtt-dashboard.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]

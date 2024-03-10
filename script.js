@@ -5,7 +5,15 @@ document.addEventListener('DOMContentLoaded', function () {
     // Event listener for starting the Python script
     startButton.addEventListener('click', function () {
         console.log('startButton')
-        fetch(server + '/start-script')
+        var cellphone = document.getElementById('cellphone').value;
+
+           fetch(server+'/start-script', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ cellphone: cellphone })
+            })
             .then(response => {
                 if (response.ok) {
                     console.log('Python script started successfully');
